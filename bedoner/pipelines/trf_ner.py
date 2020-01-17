@@ -150,7 +150,9 @@ class TrfForNamedEntityRecognitionBase(TrfForTokenClassificationBase):
                     idx.append(-1)
             pred = logit[idx]
             target = torch.tensor(
-                [label2id[ner] for ner in ners[: len(pred)]], device=self.device
+                [label2id[ner] for ner in ners[: len(pred)]],
+                device=self.device,
+                dtype=torch.long,
             )
             loss += F.cross_entropy(pred, target, ignore_index=ignore_index)
             doc._.cls_logit = logit
