@@ -34,6 +34,7 @@ class TrfTokenizer(TrfAutoMixin, Pipe):
             max_length=self.model.max_len,
             return_overflowing_tokens=True,
             return_special_tokens_mask=True,
+            pad_to_max_length=True,
         )
         return TransformersInput(**output)
 
